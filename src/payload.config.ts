@@ -53,21 +53,21 @@ export default buildConfig({
     Media,
   ],
   plugins: [
-    // imagekitPlugin({
-    //   config: {
-    //     publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-    //     privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-    //     endpoint: process.env.IMAGEKIT_ENDPOINT,
-    //   },
-    //   collections: {
-    //     media: {
-    //       uploadOption: {
-    //         folder: "media",
-    //       },
-    //       savedProperties: ["url", "AITags"],
-    //     },
-    //   },
-    // }),
+    imagekitPlugin({
+      config: {
+        publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+        privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+        endpoint: process.env.IMAGEKIT_ENDPOINT,
+      },
+      collections: {
+        media: {
+          uploadOption: {
+            folder: "media",
+          },
+          savedProperties: ["url", "AITags"],
+        },
+      },
+    }),
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
