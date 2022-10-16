@@ -10,7 +10,6 @@ const Users: CollectionConfig = {
   admin: {
     useAsTitle: 'first_name',
   },
-
   access: {
     create: () => true,
     read: isAdmin,
@@ -19,10 +18,16 @@ const Users: CollectionConfig = {
   },
   fields: [
     {
+      name: "avatar",
+      type: "upload",
+      relationTo: "media"
+    },
+    {
       type: "row",
       fields: [
         {
           name: "first_name",
+          label: "First Name",
           type: "text",
           required: true,
           admin: {
@@ -31,6 +36,7 @@ const Users: CollectionConfig = {
         },
         {
           name: "last_name",
+          label: "Last Name",
           type: "text",
           required: true,
           admin: {
@@ -38,16 +44,16 @@ const Users: CollectionConfig = {
           }
         }
       ],
-
     },
     {
       name: "role",
+      label: "Role",
       type: "radio",
       options: [
         { label: 'User', value: 'user' },
         { label: 'Admin', value: 'admin' },
-        { label: 'Client', value: 'client' },
         { label: 'Developer', value: 'developer' },
+        { label: 'Client', value: 'client' },
       ],
       required: true,
       defaultValue: "option_1",
@@ -57,6 +63,7 @@ const Users: CollectionConfig = {
     },
     {
       name: "isVerified",
+      label: "Is Account Verified?",
       type: "checkbox",
       defaultValue: false,
       required: true,
@@ -64,6 +71,7 @@ const Users: CollectionConfig = {
 
     {
       name: "account_status",
+      label: "Account Status",
       type: "radio",
       options: [
         {
@@ -86,16 +94,22 @@ const Users: CollectionConfig = {
     },
     {
       name: "firebase_token",
+      label: "Firebase Token",
       type: "text"
     },
     {
       name: "otp",
+      label: "OTP",
       type: "text",
       maxLength: 4,
       required: false,
+      admin: {
+        readOnly: true,
+      }
     },
     {
       name: "phone_number",
+      label: "Phone Number",
       type: "text",
       unique: true,
     },
@@ -104,6 +118,7 @@ const Users: CollectionConfig = {
       fields: [
         {
           name: "is_email_verified",
+          label: "Is Email Verified",
           type: "checkbox",
           defaultValue: false,
           admin: {
@@ -112,6 +127,7 @@ const Users: CollectionConfig = {
         },
         {
           name: "is_phone_verified",
+          label: "Is Phone Verified",
           type: "checkbox",
           defaultValue: false,
           admin: {
